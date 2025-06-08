@@ -7,6 +7,7 @@ export default {
 				anton: ["Anton", "sans-serif"], // 👈 this is the key
 				bebas: ["Bebas Neue", "cursive"],
 				inter: ["Inter", "sans-serif"],
+				michroma: ["Michroma", "sans-serif"],
 			},
 		},
 	},
