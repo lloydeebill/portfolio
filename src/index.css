@@ -1,9 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Anton&family=DM+Serif+Display:ital@0;1&family=Fira+Code:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Michroma&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
 
 @import "tailwindcss";
 
+@theme {
+  --font-michroma: Michroma, "sans-serif";
+  --font-anton: Anton, "sans-serif";
+  --font-dm-serif: DM Serif Display, "sans-serif";
+  --font-roboto: Roboto, "sans-serif";
+  --font-fira-code: Fira Code, "sans-serif";
+  --font-alex-brush: Alex Brush, "sans-serif";
+  --font-montserrat: MontSerrat, "sans-serif";
+}
 
 /* 1. Use a more-intuitive box-sizing model */
 *,

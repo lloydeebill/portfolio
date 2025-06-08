@@ -9,15 +9,15 @@ export default function Navbar() {
 
 	return (
 		<>
-			<nav className="relative flex items-center h-32 px-4 sm:text-md lg:text-2xl nav-buttons gap-2">
+			<nav className="relative flex items-center h-24 px-4 md:px-8 w-full md:h-32 md:text-xl xl:text-2xl font-michroma justify-between">
 				<Link
 					to="/Connect"
-					className="border-b-2  border-b-yellow-300 transition-colors duration-300 ease-in px-4 py-2 text-sm lg:px-8 lg:py-3 lg:rounded-lg lg:text-lg lg:bg-yellow-300 hover:bg-yellow-400"
+					className="border-b-2  border-b-yellow-300 transition-colors duration-300 ease-in px-4 py-2  md:px-8 md:py-3 md:rounded-md  md:bg-yellow-300 hover:bg-yellow-400"
 				>
 					CONNECT
 				</Link>
-
-				<div className="hidden lg:flex gap-12 absolute left-1/2 transform -translate-x-1/2">
+				{/* DESKTOP MENU */}
+				<div className="hidden md:flex gap-12 absolute left-1/2 -translate-x-1/2 pl-18">
 					<Link
 						className="hover:text-yellow-600 transition-colors duration-300 ease-in"
 						to="/AboutMe"
@@ -31,9 +31,9 @@ export default function Navbar() {
 						WORKS
 					</Link>
 				</div>
-				{/* hamburger menu*/}
+
 				<div
-					className="lg:hidden w-10 h-10	 flex flex-col justify-between items-center cursor-pointer bg-yellow-300 rounded-md p-2"
+					className="md:hidden w-14 h-10 flex flex-col justify-between items-center cursor-pointer bg-yellow-300 hover:bg-yellow-400 rounded-md p-2"
 					onClick={toggleMenu}
 				>
 					<span className="block h-1 w-6 bg-black"></span>
@@ -41,6 +41,24 @@ export default function Navbar() {
 					<span className="block h-1 w-6 bg-black"></span>
 				</div>
 			</nav>
+
+			{/* menu open for phones*/}
+			{menuOpen && (
+				<div className="md:hidden absolute top-20 left-0 w-full bg-white shadow-md flex flex-col items-center gap-4 py-4 z-50 font-michroma">
+					<Link
+						className=" hover:text-yellow-600 transition-colors duration-300 ease-in"
+						to="/AboutMe"
+					>
+						ABOUT ME
+					</Link>
+					<Link
+						className="hover:text-yellow-600 transition-colors duration-300 ease-in"
+						to="/Works"
+					>
+						WORKS
+					</Link>
+				</div>
+			)}
 		</>
 	);
 }
