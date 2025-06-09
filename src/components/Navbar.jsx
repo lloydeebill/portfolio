@@ -9,15 +9,15 @@ export default function Navbar() {
 
 	return (
 		<>
-			<nav className="relative flex items-center h-24 px-4 md:px-8 w-full md:h-32 md:text-xl xl:text-2xl font-michroma justify-between">
+			<nav className="relative flex items-center h-24 w-full md:h-32 md:text-xl xl:text-2xl font-michroma justify-between">
 				<Link
 					to="/Connect"
-					className="border-b-2  border-b-yellow-300 transition-colors duration-300 ease-in px-4 py-2  md:px-8 md:py-3 md:rounded-md  md:bg-yellow-300 hover:bg-yellow-400"
+					className="border-b-2  border-b-yellow-300 transition-colors duration-300 ease-in lg:px-4 py-2  md:px-8 md:py-3 md:rounded-md  md:bg-yellow-300 hover:bg-yellow-400"
 				>
 					CONNECT
 				</Link>
 				{/* DESKTOP MENU */}
-				<div className="hidden md:flex gap-12 absolute left-1/2 -translate-x-1/2 pl-18">
+				<div className="hidden md:flex gap-5 xl:gap-20 absolute left-1/2 -translate-x-1/2 pl-18">
 					<Link
 						className="hover:text-yellow-600 transition-colors duration-300 ease-in"
 						to="/AboutMe"

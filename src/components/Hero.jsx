@@ -46,25 +46,25 @@ function SkillsGrid() {
 		>
 			<motion.span
 				variants={itemVariants}
-				className="absolute top-[15%]  lg:top-[15%]  left-[10%] text-5xl md:text-9xl font-fira-code"
+				className="absolute top-[10%] left-[5%] text-5xl md:text-7xl lg:text-9xl font-fira-code"
 			>
 				Developer
 			</motion.span>
 			<motion.span
 				variants={itemVariants}
-				className="absolute top-[40%] lg:top-[40%] left-[30%] lg:left-[60%] text-4xl md:text-6xl font-anton"
+				className="absolute top-[30%] md:top-[60%] left-[40%] md:left-[50%] xl:left-[60%] text-4xl md:text-6xl lg:text-8xl font-anton"
 			>
 				Engineer
 			</motion.span>
 			<motion.span
 				variants={itemVariants}
-				className="absolute bottom-[28%] lg:bottom-[28%] left-[10%] lg:left-[20%] text-4xl md:text-7xl font-dm-serif"
+				className="absolute top-[50%] left-[5%]  md:top-[100%] text-4xl md:text-6xl lg:text-8xl font-dm-serif"
 			>
 				Virtual Assistant
 			</motion.span>
 			<motion.span
 				variants={itemVariants}
-				className="absolute bottom-[0%]  right-[10%] text-7xl md:text-9xl font-alex-brush"
+				className="absolute top-[70%] md:top-[140%] left-[40%] md:left-[50%] xl:left-[60%] text-6xl md:text-6xl lg:text-9xl font-alex-brush"
 			>
 				Designer
 			</motion.span>
@@ -94,17 +94,17 @@ export default function Hero() {
 
 	return (
 		<>
-			<div className="flex justify-center items-center h-[70vh]">
+			<div className="flex justify-center items-center w-full h-full">
 				<AnimatePresence mode="wait">
 					<motion.div
 						key={currentSequence.id}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1, transition: { duration: 0.8 } }}
 						exit={{ opacity: 0, transition: { duration: 0.8 } }}
-						className="w-full h-full"
+						className="w-full h-100"
 					>
 						{currentSequence.text ? (
-							<div className="relative w-full h-full">
+							<div className="relative">
 								<span
 									className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl  xl:text-5xl text-center lg:whitespace-nowrap w-full px-5 ${currentSequence.className}`}
 								>
