@@ -1,5 +1,11 @@
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
+import {
+	useTransform,
+	motion,
+	AnimatePresence,
+	useScroll,
+	useSpring,
+} from "framer-motion";
 
 const heroSequence = [
 	{
@@ -38,42 +44,72 @@ function SkillsGrid() {
 
 	return (
 		<motion.div
-			className="relative w-full h-full"
+			className="relative w-full "
 			variants={containerVariants}
 			initial="hidden"
 			animate="visible"
 			exit={{ opacity: 0 }}
 		>
-			<motion.span
-				variants={itemVariants}
-				className="absolute top-[10%] left-[5%] text-5xl md:text-7xl lg:text-9xl font-fira-code"
-			>
-				Developer
-			</motion.span>
-			<motion.span
-				variants={itemVariants}
-				className="absolute top-[30%] md:top-[60%] left-[40%] md:left-[50%] xl:left-[60%] text-4xl md:text-6xl lg:text-8xl font-anton"
-			>
-				Engineer
-			</motion.span>
-			<motion.span
-				variants={itemVariants}
-				className="absolute top-[50%] left-[5%]  md:top-[100%] text-4xl md:text-6xl lg:text-8xl font-dm-serif"
-			>
-				Virtual Assistant
-			</motion.span>
-			<motion.span
-				variants={itemVariants}
-				className="absolute top-[70%] md:top-[140%] left-[40%] md:left-[50%] xl:left-[60%] text-6xl md:text-6xl lg:text-9xl font-alex-brush"
-			>
-				Designer
-			</motion.span>
+			<div className="relative h-[40vh] lg:h-[60vh] w-full flex flex-col items-center justify-center gap-8 xl:block">
+				<motion.span
+					variants={itemVariants}
+					className="
+      text-5xl md:text-7xl lg:text-9xl font-fira-code
+      xl:absolute xl:top-[10%] xl:left-[10%]
+    "
+				>
+					Developer
+				</motion.span>
+
+				<motion.span
+					variants={itemVariants}
+					className="
+      text-4xl md:text-7xl lg:text-8xl font-anton
+      xl:absolute xl:top-[40%] xl:left-[65%]
+    "
+				>
+					Engineer
+				</motion.span>
+
+				<motion.span
+					variants={itemVariants}
+					className="
+      text-4xl md:text-7xl lg:text-8xl font-dm-serif
+      xl:absolute xl:top-[70%] xl:left-[7%]
+    "
+				>
+					Virtual Assistant
+				</motion.span>
+
+				<motion.span
+					variants={itemVariants}
+					className="
+      text-6xl md:text-7xl lg:text-9xl font-alex-brush
+      xl:absolute xl:top-[100%] xl:left-[60%]
+    "
+				>
+					Designer
+				</motion.span>
+			</div>
 		</motion.div>
 	);
 }
 
 export default function Hero() {
+	const heroRef = useRef(null);
+
 	const [sequenceIndex, setSequenceIndex] = useState(0);
+
+	const scroll = useScroll({
+		target: heroRef,
+		offset: ["start start", "end start"],
+	});
+
+	const rawScale = useTransform(scroll.scrollYProgress, [0, 0.2], [1, 1.15]);
+	const rawOpacity = useTransform(scroll.scrollYProgress, [0, 0.2], [1, 0]);
+
+	const scale = useSpring(rawScale, { stiffness: 100, damping: 20 });
+	const opacity = useSpring(rawOpacity, { stiffness: 100, damping: 20 });
 
 	useEffect(() => {
 		const timer1 = setTimeout(() => {
@@ -94,23 +130,22 @@ export default function Hero() {
 
 	return (
 		<>
-			<div className="flex justify-center items-center w-full h-full">
+			<div ref={heroRef} className="">
 				<AnimatePresence mode="wait">
 					<motion.div
 						key={currentSequence.id}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1, transition: { duration: 0.8 } }}
 						exit={{ opacity: 0, transition: { duration: 0.8 } }}
-						className="w-full h-100"
+						style={sequenceIndex === 2 ? { scale, opacity } : {}}
+						className="h-[40vh] lg:h-[60vh] w-full flex items-center justify-center text-2xl lg:text-4xl xl:text-7xl"
 					>
 						{currentSequence.text ? (
-							<div className="relative">
-								<span
-									className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl  xl:text-5xl text-center lg:whitespace-nowrap w-full px-5 ${currentSequence.className}`}
-								>
-									{currentSequence.text}
-								</span>
-							</div>
+							<span
+								className={`text-center xl:whitespace-nowrap ${currentSequence.className}`}
+							>
+								{currentSequence.text}
+							</span>
 						) : (
 							currentSequence.component
 						)}
